@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categorie;
 use Illuminate\Http\Request;
+
 
 class CategorieController extends Controller
 {
@@ -11,7 +13,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        return view('categorie.index');
+        $categories = categorie::all();
+        return view('categorie.index',compact('categories'));
     }
 
     /**
@@ -19,7 +22,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorie/create');
     }
 
     /**
@@ -27,38 +30,60 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->nom);
+
+        $request->validate([
+            'nom' => 'required',
+        ]);
+        $data = new categorie();
+
+        $data->nom = $request->nom;
+        $data->save();
+       return redirect('admin/dashboard');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
-    }
+        $categorie= categorie::find($request->id);
+        $bricoles = $categorie->bricoles;
+        return view('categorie.show', compact('categorie', 'bricoles'));
+    }    
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        $categorie= categorie::find($request->id);
+        return view('admin/dashboard', compact('categorie'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, categorie $categorie)
     {
-        //
+        $request->validate([
+            'nom' => 'required',
+        ]);
+    
+        $categorie->nom = $request->nom;
+        $categorie->save();
+    
+        return redirect()->route('admin/dashboard')->with('success', 'Category updated successfully.');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Categorie::destroy($request->id);
+        return redirect()->route('admin/dashboard')->with('success', 'Category deleted successfully.');
     }
+    
 }

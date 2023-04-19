@@ -14,18 +14,23 @@ return new class extends Migration
         Schema::create('bricoles', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('image');
-            $table->string('category');
-            $table->unsignedBigInteger('bricoles_id');
-            $table->foreign('category')->references('nom')->on('categorie');
-            $table->foreign('bricoles_id')->references('id')->on('bricoles');
             $table->string('description');
-            $table->boolean('disponible')->default(true);
-            $table->date('date_de_creation');
-            $table->unsignedBigInteger('users_id'); // Add user_id column
-            $table->foreign('users_id')->references('id')->on('users') // Set user_id as a foreign key
+            $table->string('image');
+            $table->float('prix');
+            $table->unsignedBigInteger('categorie_id');
+            $table->foreign('categorie_id')->references('id')->on('categories')
             ->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->boolean('disponible')->default(true);
+            $table->date('date_de_creation');
+            $table->date('date_de_demission');
+            $table->string('vill');
+            $table->string('adress');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
