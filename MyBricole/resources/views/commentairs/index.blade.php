@@ -1,5 +1,5 @@
 
-
+{{$commentaires}}
 
 @foreach ($commentaires as $commentaire)
 {{$commentaire->commentaire}}

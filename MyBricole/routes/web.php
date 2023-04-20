@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BricoleurController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Livewire\Commentaires;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'AdminCheckAuth'])->group(function () {
     Route::get('commentairs/create',[CommentaireController::class,'create'])->name('commentairs/create'); 
     Route::post('commentairs/store',[CommentaireController::class,'store'])->name('commentairs/store');
     Route::get('commentairs/show/{id}',[CommentaireController::class,'show'])->name('commentairs.show');
+    Route::get('coment/show',[Commentaires::class,'render']);
 });
 
 Route::middleware(['auth', 'UserCheckAuth'])->group(function () {
