@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function bricoles(){
         return $this->hasOne(Bricole::class);
     }
+    public function commentairs()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }

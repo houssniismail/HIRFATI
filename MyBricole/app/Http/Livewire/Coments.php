@@ -15,7 +15,7 @@ class Coments extends Component
     public $id_bricole;
     public function mount($id_bricole){
         $this->id_bricole = $id_bricole;
-        $this->read();
+        $this->render();
     }
     public function save()
     {
@@ -25,15 +25,12 @@ class Coments extends Component
         $Commentaire->user_id = Auth::user()->id;
         $Commentaire->save();
         $this->bricole='';
-        $this->read();
-    }
-    public function read()
-    {
-        $this->bricole = bricole::where('id_bricole', $this->id_bricole)->get();
+        $this->render();
     }
     public function render()
     {
-        return view('livewire.coments');
+        $commentairs = commentaire::find($this->id_bricole)->get();
+        return view('livewire.coments',['commentaires'=>$commentairs]);
     }
 
     

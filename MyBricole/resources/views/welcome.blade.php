@@ -200,10 +200,11 @@
                     </a>
                     <!-- Nav Links -->
                     <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-                        <li><a class="hover:text-gray-200" href="#">Home</a></li>
-                        <li><a class="hover:text-gray-200" href="#">Catagory</a></li>
-                        <li><a class="hover:text-gray-200" href="#">Collections</a></li>
-                        <li><a class="hover:text-gray-200" href="#">Contact Us</a></li>
+                        <li><a class="hover:text-gray-200" href="{{asset('/')}}">Accueil</a></li>
+                        <li><a class="hover:text-gray-200" href="{{asset('/')}}">Vendre</a></li>
+                        <li><a class="hover:text-gray-200" href="#">Acheter</a></li>
+                        <li><a class="hover:text-gray-200" href="#">Ajoute</a></li>
+                        <li><a class="hover:text-gray-200" href="#">Compte</a></li>
                     </ul>
 
                     <!-- Header Icons -->
@@ -277,10 +278,14 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 @foreach ($bricoles as $bricole)
-                    <div class=" !z-5 relative mx-5 rounded-[20px] max-w-[300px] bg-clip-border shadow-3xl shadow-shadow-500 flex flex-col w-full !p-4 3xl:p-![18px] bg-white undefined ml-auto mr-auto mt-6 shadow-2xl">
+                    <div
+                        class=" !z-5 relative mx-5 rounded-[20px] max-w-[300px] bg-clip-border shadow-3xl shadow-shadow-500 flex flex-col w-full !p-4 3xl:p-![18px] bg-white undefined ml-auto mr-auto mt-6 shadow-2xl">
                         <div class="h-full w-full">
                             <div class="relative w-full">
-                                <a href="{{route('bricole.show',['id'=>$bricole->id])}}"><img src="{{ asset('images/' . $bricole->image) }}" class="mb-3 h-full w-full rounded-xl 3xl:h-full 3xl:w-full" alt="" style="width:268px; height:178px;"></a>
+                                <a href="{{ route('bricole.show', ['id' => $bricole->id]) }}"><img
+                                        src="{{ asset('images/' . $bricole->image) }}"
+                                        class="mb-3 h-full w-full rounded-xl 3xl:h-full 3xl:w-full" alt=""
+                                        style="width:268px; height:178px;"></a>
                                 <button
                                     class=" hover:bg-pink-600 absolute top-3 right-3 flex items-center justify-center rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer">
                                     <div
@@ -298,16 +303,20 @@
                             </div>
                             <div class="mb-3 flex items-center justify-between px-1 md:items-start">
                                 <div class="mb-2">
-                                    <p class="text-lg font-bold text-navy-700"> {{$bricole->nom}} </p>
-                                    <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2"> {{$bricole->description}} </p>
-                                    <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2">vill & l'adress: {{$bricole->vill}},{{$bricole->adress}}</p>
-                                    <p>nom: {{$bricole->users->name}}, email:<a href="mailto:{{$bricole->users->email}}">{{$bricole->users->email}}</a> </p>
-                                    <p>  </p>
+                                    <p class="text-lg font-bold text-navy-700"> {{ $bricole->nom }} </p>
+                                    <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2">
+                                        {{ $bricole->description }} </p>
+                                    <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2">vill & l'adress:
+                                        {{ $bricole->vill }},{{ $bricole->adress }}</p>
+                                    <p>nom: {{ $bricole->users->name }}, email:<a
+                                            href="mailto:{{ $bricole->users->email }}">{{ $bricole->users->email }}</a>
+                                    </p>
+                                    <p> </p>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between md:items-center lg:justify-between ">
                                 <div class="flex">
-                                    <p class="!mb-0 text-sm font-bold text-brand-500">prix: {{$bricole->prix}}
+                                    <p class="!mb-0 text-sm font-bold text-brand-500">prix: {{ $bricole->prix }}
                                         <span>$</span>
                                     </p>
                                 </div>
